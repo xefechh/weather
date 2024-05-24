@@ -2,7 +2,6 @@
 
 # Imports
 from customtkinter import *
-import requests
 import time
 
 app = CTk()

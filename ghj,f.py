@@ -25,7 +25,7 @@ class SquareApp(customtkinter.CTk):
         self.draw_square(x1, y1, x2, y2)
 
     def draw_square(self, x1, y1, x2, y2):
-        self.canvas.create_rectangle(x1, y1, x2, y2, fill="#333333")
+        self.canvas.create_rectangle(x1, y1, x2, y2, corner_radius=10, fill="#333333")
 
 app = SquareApp()
 app.von()
