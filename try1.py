@@ -19,8 +19,9 @@ def get_current_temperature(city):
 if __name__ == "__main__":
     city = input("Enter city name: ")
     a = get_current_temperature(city)
-#    Tallinn
-#London
+#   Tallinn
+#   London
+
 
 app = WeatherApp()
 app.setup_ui(a)
