@@ -17,7 +17,7 @@ class WeatherApp(CTk):
         self.canvas.pack()
 
         # Отрисовка всех квадратов
-        self.draw_square(30, 60, 240, 250, text=a)
+        self.draw_square(30, 60, 240, 250, text=f"{a}C")
         self.draw_square(30, 306, 240, 576, text="5 days forecast")
         self.draw_square(270, 60, 970, 440)
         
