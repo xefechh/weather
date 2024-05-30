@@ -1,11 +1,12 @@
 # Authors: Artem Kii, Gaabriel Ponomarjov
 
 # Imports
-from customtkinter import *
+from customtkinter import CTk, CTkCanvas, set_appearance_mode
 
 class WeatherApp(CTk):
-    def __init__(self):
+    def __init__(self, a):
         super().__init__()
+        self.setup_ui(a)
 
     def setup_ui(self, a):
         self.title("Weather APP")
@@ -13,7 +14,7 @@ class WeatherApp(CTk):
         set_appearance_mode("Dark")
 
         # Создаем холст с заданными размерами
-        self.canvas = CTkCanvas(self, width=1000, height=600 , bg = "#000000", highlightthickness=0)
+        self.canvas = CTkCanvas(self, width=1000, height=600, bg="#000000", highlightthickness=0)
         self.canvas.pack()
 
         # Отрисовка всех квадратов
@@ -43,3 +44,6 @@ class WeatherApp(CTk):
             y_center = (y1 + y2) / 2
             self.canvas.create_text(x_center, y_center, text=text, fill="white", font=("Arial", 16, "bold"))
 
+# Create an instance of the WeatherApp with a temperature value
+app = WeatherApp(a=25)
+app.mainloop()
