@@ -1,7 +1,7 @@
 from customtkinter import *
 from PIL import Image
 import requests
-import datetime
+from datetime import datetime
 api = '58ece528195235057712455ac755125d'
 app = CTk()
 app.geometry("300x400")
@@ -23,7 +23,7 @@ class server_handling:
         entered_city = search.get()
         weather_data = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={entered_city}&units=imperial&APPID={api}")
         with open("history.txt", 'a') as file:
-                file.write(f"{search.get()}: ")
+                file.write(f"{(search.get()).upper()}: \n")
         if weather_data.json()['cod'] == '404':
             result_label.configure(text="No city found")
             with open("history.txt", 'a') as file:
@@ -46,7 +46,9 @@ class server_handling:
             wind_result = f"Wind Speed:\n{wind_speed} m/s"
             wind_label.configure(text=wind_result)
             with open("history.txt", 'a') as file:
-                file.write(f"Time: {datetime.now()}\nWeather: {weather}\nTemperature: {temp}\nHumidity: {humidity}\nWind Speed: {wind_speed}\n\n")
+                timemine = datetime.now()
+                file.write(f"Time: {timemine.strftime('%H:%M:%S')}\nWeather: {weather}\nTemperature: {temp}\nHumidity: {humidity}\nWind Speed: {wind_speed}\n\n")
+
                 
 
 frame = CTkFrame(app)
