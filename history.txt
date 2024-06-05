@@ -1,0 +1,14 @@
+MOSCOW: 
+Time: 13:42:24
+Weather: Clear
+Temperature: 78
+Humidity: 37
+Wind Speed: 5.99
+
+MOSCOW: 
+Time: 13:42:24
+Weather: Clear
+Temperature: 78
+Humidity: 37
+Wind Speed: 5.99
+
