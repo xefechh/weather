@@ -5,7 +5,7 @@ a = Analysis(
     ['gaabriel.py'],
     pathex=[],
     binaries=[],
-    datas=[('C:\\JPTV23\\Git\\weather\\search_icon.png', '.')],
+    datas=[('C:/JPTV23/Git/weather/search_icon.png', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

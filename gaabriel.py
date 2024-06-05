@@ -1,13 +1,13 @@
 from customtkinter import *
 from PIL import Image
 import requests
-
+import datetime
 api = '58ece528195235057712455ac755125d'
 app = CTk()
 app.geometry("300x400")
 app._set_appearance_mode("dark")
 app.resizable(False, False)
-app.title("Понос пагоды")
+app.title("Погода")
 
 def on_enter(event):
     search_button.configure(bg_color='#2D2726')
@@ -18,28 +18,36 @@ def on_leave(event):
 def on_click(event):
     search_button.configure(bg_color='#242424')
 
-def search_click():
-    entered_city = search.get()
-    weather_data = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={entered_city}&units=imperial&APPID={api}")
-    if weather_data.json()['cod'] == '404':
-        result_label.configure(text="No city found")
-    else:
-        weather = weather_data.json()['weather'][0]['main']
-        temp = round((weather_data.json()['main']['temp']))
-        temp_celsius = round(5/9 * (temp - 32), 1)
-        temp_celsius = int(temp_celsius)
-        result_text = f"{temp_celsius}°C"
-        result_label.configure(text=result_text)
-        weather_result = f"{weather}"
-        weather_label.configure(text=weather_result)
-        
-        humidity = weather_data.json()['main']['humidity']
-        humidity_result = f"Humidity: \n{humidity}%"
-        humidity_label.configure(text=humidity_result)
-        
-        wind_speed = weather_data.json()['wind']['speed']
-        wind_result = f"Wind Speed:\n{wind_speed} m/s"
-        wind_label.configure(text=wind_result)
+class server_handling:
+    def search_click():
+        entered_city = search.get()
+        weather_data = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={entered_city}&units=imperial&APPID={api}")
+        with open("history.txt", 'a') as file:
+                file.write(f"{search.get()}: ")
+        if weather_data.json()['cod'] == '404':
+            result_label.configure(text="No city found")
+            with open("history.txt", 'a') as file:
+                file.write(f"No city found\n\n")
+        else:
+            weather = weather_data.json()['weather'][0]['main']
+            temp = round((weather_data.json()['main']['temp']))
+            temp_celsius = round(5/9 * (temp - 32), 1)
+            temp_celsius = int(temp_celsius)
+            result_text = f"{temp_celsius}°C"
+            result_label.configure(text=result_text)
+            weather_result = f"{weather}"
+            weather_label.configure(text=weather_result)
+            
+            humidity = weather_data.json()['main']['humidity']
+            humidity_result = f"Humidity: \n{humidity}%"
+            humidity_label.configure(text=humidity_result)
+            
+            wind_speed = weather_data.json()['wind']['speed']
+            wind_result = f"Wind Speed:\n{wind_speed} m/s"
+            wind_label.configure(text=wind_result)
+            with open("history.txt", 'a') as file:
+                file.write(f"Time: {datetime.now()}\nWeather: {weather}\nTemperature: {temp}\nHumidity: {humidity}\nWind Speed: {wind_speed}\n\n")
+                
 
 frame = CTkFrame(app)
 frame.pack(pady=10, anchor='w', padx=10)
@@ -48,7 +56,7 @@ search = CTkEntry(frame, font=("Helvetica", 18), text_color='#FFFFFF', placehold
 search.grid(row=0, column=0)
 search_icon = CTkImage(light_image=Image.open("C:\JPTV23\Git\weather\search_icon.png"), dark_image=Image.open("C:\JPTV23\Git\weather\search_icon.png"))
 
-search_button = CTkButton(frame, text='', image=search_icon, width=30, height=30, command=search_click, corner_radius=5, fg_color='#242424', bg_color='#242424')
+search_button = CTkButton(frame, text='', image=search_icon, width=30, height=30, command=server_handling.search_click, corner_radius=5, fg_color='#242424', bg_color='#242424')
 search_button.bind("<Enter>", on_enter)
 search_button.bind("<Leave>", on_leave)
 search_button.bind("<Button-1>", on_click)
