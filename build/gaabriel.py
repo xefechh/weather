@@ -61,7 +61,7 @@ frame.pack(pady=10, anchor='w', padx=10)
 
 search = CTkEntry(frame, font=("Helvetica", 18), text_color='#FFFFFF', placeholder_text='SEARCH', corner_radius=15, width=250, height=30, fg_color='#242424', border_width=1, bg_color='#242424')
 search.grid(row=0, column=0)
-search_icon = CTkImage(light_image=Image.open("ready_py\search_icon.png"), dark_image=Image.open("ready_py\search_icon.png"))
+search_icon = CTkImage(light_image=Image.open("build\search_icon.png"), dark_image=Image.open("build\search_icon.png"))
 
 search_button = CTkButton(frame, text='', image=search_icon, width=30, height=30, command=server_handling.search_click, corner_radius=5, fg_color='#242424', bg_color='#242424')
 
