@@ -11,14 +11,9 @@ app.resizable(False, False)
 app.title("Погода")
 
 class search_button_commands:
-    def on_enter(event):
-        search_button.configure(bg_color='#2D2726')
-
-    def on_leave(event):
+    def on_enter(event): 
         search_button.configure(bg_color='#242424')
-
-    def on_click(event):
-        search_button.configure(bg_color='#242424')
+        
 
 class server_handling:
     def search_click():
@@ -66,13 +61,11 @@ frame.pack(pady=10, anchor='w', padx=10)
 
 search = CTkEntry(frame, font=("Helvetica", 18), text_color='#FFFFFF', placeholder_text='SEARCH', corner_radius=15, width=250, height=30, fg_color='#242424', border_width=1, bg_color='#242424')
 search.grid(row=0, column=0)
-search_icon = CTkImage(light_image=Image.open("search_icon.png"), dark_image=Image.open("search_icon.png"))
+search_icon = CTkImage(light_image=Image.open("ready_py\search_icon.png"), dark_image=Image.open("ready_py\search_icon.png"))
 
 search_button = CTkButton(frame, text='', image=search_icon, width=30, height=30, command=server_handling.search_click, corner_radius=5, fg_color='#242424', bg_color='#242424')
 
 search_button.bind("<Enter>", search_button_commands.on_enter)
-search_button.bind("<Leave>", search_button_commands.on_leave)
-search_button.bind("<Button-1>", search_button_commands.on_click)
 
 search_button.grid(row=0, column=1)
 
