@@ -3,7 +3,7 @@ from PIL import Image
 import requests
 from datetime import datetime
 
-api = '58ece528195235057712455ac755125d'
+api = '58ece528195235057712455ac755125d' # API võti 
 app = CTk()
 app.geometry("300x400")
 app._set_appearance_mode("dark")
